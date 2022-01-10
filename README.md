@@ -1,43 +1,41 @@
-# aafu Theme
+# Website
 
-The aafu Theme is a responsive portfolio with blog.
+This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
 
-## Live Demo
-[Click here](https://aafudemo.netlify.com/) for live demo.
-
-## Installation
-
-Inside the folder of your Hugo site run:
-
-    $ cd themes
-    $ git clone https://github.com/darshanbaral/aafu.git
-
-For more information read the official [setup guide](//gohugo.io/overview/installing/) of Hugo.
-
-## Getting started
-
-After installing the aafu Theme successfully, modify the `config.toml` as you wish to generate your online resume.
-
-### The config file
-
-You'll find a file called [`config.toml`](//github.com/darshanbaral/aafu/blob/master/exampleSite/config.toml). Copy the `config.toml`to the root folder of your Hugo site and customize it per your need.
-
-Note that the sections to be displayed in the accordion, the order of the sections, and the section that should be expanded at the beginning can be specifed in the `config.toml`.
-
-### Add your photo
-
-Go to `static/images` and replace the `profile.jpg` with your own file.
-
-### Theme Colors
-
-The `aafu` theme provides three different theme colors - `light`, `dark`, and `pinkish`. These can be specified in the `config.toml`
+### Installation
 
 ```
-    [params.theme]
-        # Available themes are 'light', 'dark', and 'pinkish'
-        mainTheme = "light"
-```    
+$ yarn
+```
 
-## Reporting Issues
+### Local Development
 
-If you have discovered a bug or have a feature request, [create an issue](https://github.com/darshanbaral/aafu/issues/new).
+```
+$ yarn start
+```
+
+This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+
+### Build
+
+```
+$ yarn build
+```
+
+This command generates static content into the `build` directory and can be served using any static contents hosting service.
+
+### Deployment
+
+Using SSH:
+
+```
+$ USE_SSH=true yarn deploy
+```
+
+Not using SSH:
+
+```
+$ GIT_USER=<Your GitHub username> yarn deploy
+```
+
+If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
