@@ -19,6 +19,9 @@
     # Search for the extensions you want on https://open-vsx.org/ and use "publisher.id"
     extensions = [
       # "vscodevim.vim"
+      "dbaeumer.vscode-eslint"
+      "esbenp.prettier-vscode"
+      "ms-vscode.js-debug"
     ];
 
     # Enable previews
