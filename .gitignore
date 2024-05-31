@@ -3,6 +3,7 @@
 
 # dotfiles
 .*/
+!.idx
 
 # dependencies
 node_modules/
