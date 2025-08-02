@@ -5,7 +5,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'El Darto',
   tagline: 'A collection of my Dart projects. Dart is not only Flutter.',
-  favicon: 'img/logo.svg',
+  favicon: 'img/logo.png',
 
   // Set the production url of your site here
   url: 'https://gbassisp.github.io',
@@ -53,12 +53,12 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    image: 'img/logo.png',
     navbar: {
       title: 'El Darto',
       logo: {
         alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        src: 'img/logo.png',
       },
       items: [
         {
