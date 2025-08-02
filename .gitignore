@@ -1,3 +1,6 @@
 # all hidden dir:
 .*/
+# except specific ones
+!.github
+
 node_modules/
