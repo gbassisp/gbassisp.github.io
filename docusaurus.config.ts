@@ -4,8 +4,8 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'El Darto',
-  tagline: 'Ay caramba',
-  favicon: 'img/docusaurus.jpeg',
+  tagline: 'A collection of my Dart projects. Dart is not only Flutter.',
+  favicon: 'img/logo.svg',
 
   // Set the production url of your site here
   url: 'https://gbassisp.github.io',
@@ -15,8 +15,8 @@ const config: Config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'el-darto', // Usually your GitHub org/user name.
-  projectName: 'el-darto', // Usually your repo name.
+  organizationName: 'gbassisp', // Usually your GitHub org/user name.
+  projectName: 'gbassisp.github.io', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -32,25 +32,20 @@ const config: Config = {
   presets: [
     [
       'classic',
-      { 
+      {
         pages: false,
         docs: {
           sidebarPath: './sidebars.ts',
           routeBasePath: '/',
+          
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/gbassisp/gbassisp.github.io/tree/main/',
         },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-        },
+        blog: false,
         theme: {
-          // customCss: './src/css/custom.css',
+          customCss: undefined,
         },
       } satisfies Preset.Options,
     ],
@@ -58,23 +53,22 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpeg',
+    image: 'img/docusaurus-social-card.jpg',
     navbar: {
       title: 'El Darto',
       logo: {
-        alt: 'Site Logo',
-        src: 'img/docusaurus.jpeg',
+        alt: 'My Site Logo',
+        src: 'img/logo.svg',
       },
       items: [
         {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Tutorial',
+          label: 'Projects',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/gbassisp/gbassisp.github.io',
           label: 'GitHub',
           position: 'right',
         },
@@ -84,50 +78,21 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
-          items: [
-            {
-              label: 'Tutorial',
-              to: '/docs/intro',
-            },
-          ],
-        },
-        {
-          title: 'Community',
-          items: [
-            {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
-            {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
-            },
-            {
-              label: 'Twitter',
-              href: 'https://twitter.com/docusaurus',
-            },
-          ],
-        },
-        {
           title: 'More',
           items: [
             {
-              label: 'Blog',
-              to: '/blog',
-            },
-            {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/gbassisp/gbassisp.github.io',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} El Darto. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} My Projects, Inc. Built with Docusaurus.`,
     },
     prism: {
-      theme: prismThemes.duotoneLight,
-      darkTheme: prismThemes.duotoneDark,
+      theme: prismThemes.github,
+      darkTheme: prismThemes.dracula,
+      additionalLanguages: ['dart'],
     },
   } satisfies Preset.ThemeConfig,
 };

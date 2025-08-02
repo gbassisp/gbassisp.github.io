@@ -1,41 +1,43 @@
-# Website
+<!-- 
+This README describes the package. If you publish this package to pub.dev,
+this README's contents appear on the landing page for your package.
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+For information about how to write a good package README, see the guide for
+[writing package pages](https://dart.dev/tools/pub/writing-package-pages). 
 
-### Installation
+For general information about developing packages, see the Dart guide for
+[creating packages](https://dart.dev/guides/libraries/create-packages)
+and the Flutter guide for
+[developing packages and plugins](https://flutter.dev/to/develop-packages). 
+-->
 
-```
-$ yarn
-```
+TODO: Put a short description of the package here that helps potential users
+know whether this package might be useful for them.
 
-### Local Development
+## Features
 
-```
-$ yarn start
-```
+TODO: List what your package can do. Maybe include images, gifs, or videos.
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+## Getting started
 
-### Build
+TODO: List prerequisites and provide or point to information on how to
+start using the package.
 
-```
-$ yarn build
-```
+## Usage
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
+TODO: Include short and useful examples for package users. Add longer examples
+to `/example` folder. 
 
-### Deployment
-
-Using SSH:
-
-```
-$ USE_SSH=true yarn deploy
-```
-
-Not using SSH:
-
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
+```dart
+const like = 'sample';
 ```
 
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+## Additional information
+
+TODO: Tell users more about the package: where to find more information, how to 
+contribute to the package, how to file issues, what response they can expect 
+from the package authors, and more.
+
+## More
+
+More docs on [intro](docs/intro.md)
