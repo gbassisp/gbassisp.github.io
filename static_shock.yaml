@@ -1,0 +1,12 @@
+output_dir: build
+
+data:
+  title: El Darto
+  description: A collection of my Dart projects. Dart is not only Flutter.
+
+plugins:
+  - plugin: static_shock.plugins.pretty_urls
+  - plugin: static_shock.plugins.markdown
+
+pages:
+  - source_path: source/packages

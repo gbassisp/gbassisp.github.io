@@ -1,3 +1,8 @@
+---
+title: any_date
+navOrder: 1
+---
+
 # any_date
 
 `any_date` is a popular Dart package, currently in the top decile of most-used packages on pub.dev (about 94% popularity using a similar metric to the old one), that simplifies one common but often complex task: parsing a `String` into a `DateTime` object.

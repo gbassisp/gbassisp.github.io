@@ -1,3 +1,9 @@
+---
+title: lean_extensions
+navOrder: 3
+---
+
+
 # lean_extensions
 
 `lean_extensions` is my personal and ever-evolving toolbox for Dart. It's a collection of extension methods, helper classes, and top-level functions that I've found myself needing across various projects. The goal is to make Dart development faster and more expressive by borrowing powerful concepts from other languages.
