@@ -19,6 +19,8 @@ jobs:
 
       - name: Install dependencies
         run: dart pub get
+      - name: Install shock cli
+        run: dart pub global activate static_shock_cli
       - name: Test build website
         run: dart pub run shock build
 
