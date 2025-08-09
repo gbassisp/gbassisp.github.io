@@ -27,7 +27,7 @@ layout: layouts/docs_page.jinja
 # The global navigation manu for all documentation pages in this website.
 navigation:
   
-  show_contributors: true
+  show_contributors: false
   
 
   items:
