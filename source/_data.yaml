@@ -38,6 +38,6 @@ navigation:
       tag: packages
       sortBy: navOrder
 
-    - title: Concepts
+    - title: Demos
       tag: concepts
       sortBy: navOrder
