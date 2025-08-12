@@ -26,7 +26,13 @@ Future<void> main(List<String> arguments) async {
       showDrafts: arguments.contains("preview"),
     ))
     // ..plugin(LinksPlugin())
-    ..plugin(RssPlugin(site: RssSiteConfiguration(homePageUrl: '/')));
+    ..plugin(RssPlugin(
+        site: RssSiteConfiguration(
+      homePageUrl: '/',
+      title: 'El Darto',
+      description: 'Ay caramba!',
+      language: 'en',
+    )));
 
   // Generate the static website.
   await staticShock.generateSite();
