@@ -15,34 +15,33 @@ This package draws heavy inspiration from the standard libraries of Python and C
 *   **Python Built-ins:** Enjoy functions like `range()`, `zip()`, and `enumerate()` that make iterating and combining collections a breeze.
 *   **C# LINQ-style Methods:** Work with collections in a more declarative way with powerful extension methods inspired by C#'s LINQ and Dart's own `collection` package.
 
-### Key Features
 
-*   **Rich Collection Extensions:** A wide array of methods for filtering, mapping, and manipulating lists, maps, and iterables.
-*   **String Utilities:** Helpers for common string operations.
-*   **Convenience Functions:** Top-level functions for tasks that don't neatly fit into a class.
+---
 
-## Usage
-
-Here is a small taste of what you can do with `lean_extensions`:
+## Example
 
 ```dart
-import 'package:lean_extensions/lean_extensions.dart';
 
-void main() {
-  // Use range() to create a list of numbers
-  final numbers = range(5).toList(); // [0, 1, 2, 3, 4]
-
-  // Use enumerate() to get index-value pairs
-  for (final (index, value) in enumerate(numbers)) {
-    print('Index: $index, Value: $value');
-  }
-
-  // Use zip() to combine two lists
-  final letters = ['a', 'b', 'c'];
-  final zipped = zip([numbers, letters]);
-  print(zipped); // [[0, 'a'], [1, 'b'], [2, 'c']]
+// some python-like functionality
+for (final i in range(10)) {
+  await sleep(i);
 }
+
+// some converters for easy (de)serialization
+const converter = AnyDateConverter();
+final date1 = converter.fromJson('25 Nov 2023');
+if (date1 == DateTime(2023, 11, 25)) {
+  // easily deserializes common types
+}
+
+// some extensions with common functionality
+final anInt = '1'.toInt(); // resolves to 1
+
+// and a touch of magic
+final anotherInt = 'one'.toInt(); // resolves to 1 as well
+
 ```
+
 
 ## pub.dev
 
