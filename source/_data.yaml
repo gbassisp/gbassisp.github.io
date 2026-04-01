@@ -38,3 +38,7 @@ navigation:
       tag: packages
       sortBy: navOrder
 
+    - title: Blog
+      tag: blog
+      sortBy: publishDate
+

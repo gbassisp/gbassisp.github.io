@@ -31,6 +31,8 @@
     <link rel="stylesheet" href="/styles/docs_page_layout.css">
     <link rel="stylesheet" href="/styles/docs_page_layout_light.css">
     <link rel="stylesheet" href="/styles/docs_page_layout_dark.css">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/rss_feed.xml">
   </head>
 
   <body>
@@ -67,6 +69,10 @@
               <a class="nav-link" href="{{  package.sponsorship  }}" target="_blank"><span class="fa fa-dollar-sign"></span></a>
             </li>
             {% endif %}
+
+            <li class="nav-item">
+              <a href="/rss_feed.xml" target="_blank"><span class="fa fa-rss"></span></a>
+            </li>
 
             <li class="nav-item">
               <span id="brightness-button" onclick="toggleBrightness()" class="fa fa-moon"></span>
