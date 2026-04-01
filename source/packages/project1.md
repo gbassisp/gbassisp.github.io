@@ -1,5 +1,6 @@
 ---
 title: any_date
+publishDate: 2025-08-12
 navOrder: 1
 ---
 

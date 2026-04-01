@@ -1,5 +1,6 @@
 ---
 title: flutter_sane_lints
+publishDate: 2025-08-12
 navOrder: 2
 ---
 

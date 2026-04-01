@@ -1,5 +1,6 @@
 ---
 title: english_numerals
+publishDate: 2025-09-18
 navOrder: 4
 ---
 

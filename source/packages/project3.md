@@ -1,5 +1,6 @@
 ---
 title: lean_extensions
+publishDate: 2025-08-12
 navOrder: 3
 ---
 
