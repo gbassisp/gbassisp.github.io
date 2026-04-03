@@ -4,6 +4,7 @@ $standardDividerBorder: 1px solid $dividerColor;
 html[data-bs-theme="dark"] {
 
   .navbar {
+    background: #202026;
     border-bottom: $standardDividerBorder;
 
     .navbar-brand {
@@ -13,7 +14,9 @@ html[data-bs-theme="dark"] {
     }
 
     .nav-item {
-      a, .fa {
+
+      a,
+      .fa {
         color: #CCCCCC;
 
         &:hover {

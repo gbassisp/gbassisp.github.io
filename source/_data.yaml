@@ -34,6 +34,9 @@ navigation:
     - title: Welcome
       url: /
 
+    - title: RSS Feeds
+      url: /rss/
+
     - title: Packages
       tag: packages
       sortBy: navOrder
