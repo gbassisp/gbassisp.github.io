@@ -13,7 +13,9 @@ html[data-bs-theme="dark"] {
     }
 
     .nav-item {
-      a, .fa {
+
+      a,
+      .fa {
         color: #CCCCCC;
 
         &:hover {
