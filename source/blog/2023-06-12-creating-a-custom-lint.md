@@ -25,7 +25,7 @@ Posted on [Medium](https://medium.com/@gbassisp/creating-a-custom-lint-package-f
 
 
 
-# Problem
+## Problem
 
 Flutter is awesome and Dart’s static analysis makes it extremely powerful for catching bugs early with its type safety. However, we have all seen a few projects with some code smells that makes maintainability hard, even when you toggle on all important lint rules or use a pre-defined set of rules, like the [very_good_analysis](https://pub.dev/packages/very_good_analysis) package.
 
@@ -59,7 +59,7 @@ And it goes without saying that there are absolute no tests or comments written 
 
 
 
-# Solution
+## Solution
 
 These issues usually start from network requests, where developers don’t know how to serialise and convert JSON maps into objects that actually represent what you want. Of course the real best solution here is to use json_serializable with your own custom converters and get rid of all that primitive obsession on its root.
 
@@ -67,7 +67,7 @@ But what if your collaborators continue to neglect the beauty of json_serializab
 
 That’s when a custom lint rule comes in handy to start pointing out all the smell they are creating and bring to attention the importance of the above solution. (Or until they turn off static analysis, because why bother?)
 
-# Enter flutter_sane_lints
+## Enter flutter_sane_lints
 With this in mind, I published my own linter plugin, flutter_sane_lints, using custom_lint that focus on warning devs about creating these ad-hoc strings inside widgets to help maintainers.
 
 It is a very simple rule: if you start declaring string literals or interpolating strings inside a Widget/State, or even when invoking the constructor to create instances of a Widget, you will get a warning.
@@ -85,14 +85,14 @@ By installing and enabling this linter plugin, the example code I showed before 
 
 Then, with all these problems showing up on the analyzer, chances are the project maintainer (or even your CI/CD workflows) will block any PR with this mess.
 
-# Goal
+## Goal
 But the real goal here is not to have a lint rule that puts an end to these bad habits. No, this will come naturally with learning and self-improvement. The real goal of this exercise is to implement this rule! How do you tell the analysis server where to give this warning? This is where the custom_lint and the analyzer API comes in place.
 
 We all study compilers and the AST ([Abstract Syntax Tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree)) at some point, but we usually stop after seeing the theory. I wanted to experiment with it and see what it is really like under the hood.
 
 I confess the analyzer API looked a bit overwhelming at first glance, because of the **huge** amount of AST nodes there are. Really, have a look at the [API here](https://pub.dev/documentation/analyzer/latest/dart_ast_ast/dart_ast_ast-library.html), there are hundreds of AST nodes. However, after studying a little and, of course, playing around with it, I was able start making progress. Then, at the moment you get your first idea right, it just flows so quickly, thanks to the quick feedback loop of making a change to your lint rule and see the analyzer change warnings on your tests.
 
-# Conclusion
+## Conclusion
 The purpose of flutter_sane_lints is simple yet powerful: it warns developers about creating ad-hoc strings inside widgets, which is usually a sign of missing abstraction and logic creeping up in the UI. Getting rid of this ultimately helps Flutter maintainers improve code quality and consistency.
 
 But the best part was this journey! I have never written (and probably never will) my own compiler, but at least working with the analyzer gives a sweet first taste. Writing a lint rule and studying how Dart’s static analysis works is a great way of improving your understanding of the language and makes you appreciate it even more.

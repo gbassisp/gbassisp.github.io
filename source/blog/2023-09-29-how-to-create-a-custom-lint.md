@@ -26,7 +26,7 @@ Actually, no, it’s not! It turns out we have a live **debugging** session (don
 
 So, let’s see what that really looks like.
 
-# Goal
+## Goal
 As I explained in [my previous post](/blog/2023-06-12-creating-a-custom-lint/), the target of my linter rule was string literals inside widgets. A basic premise I wanted to test with this rule is that most time someone hard-code a string in a widget, it is due to one of these two reasons:
 
 1. Lack of abstraction; commonly a value used for comparison, which should have been an enum
@@ -54,7 +54,7 @@ Widget build(BuildContext context){
 
 Hence, as a way of enforcing this practice, I decided to create a custom lint as described on the following steps.
 
-# Create the project
+## Create the project
 
 We start by creating a Dart package; Optionally, using [very_good_cli](https://pub.dev/packages/very_good_cli) for more out-of-the-box features.
 
@@ -81,7 +81,7 @@ Then, it is important to add our custom lint rule and custom_lint as dev depende
 
 At this point we should have a Flutter app without any linter warnings. This is our baseline for creating test cases. This is **green**, all *zero* tests are passing.
 
-# Red
+## Red
 The first step on the TDD method is to start defining test cases without making them pass. As a matter of fact, starting small with a single case will do. How? Using the sub-project, we start creating the undesired problems to be targeted with the custom rule and mark them with the *expect_lint* annotation, as recommended by the official documentation [here](https://pub.dev/packages/custom_lint#testing-your-plugins-using-expect_lint).
 
 Using the example from earlier, the first case becomes:
@@ -101,7 +101,7 @@ So, now it’s time to “run” the test and see it failing. That is, it’s ti
 
 We have a warning on the analysis server, so our test is failing. This means **red**.
 
-# Green
+## Green
 Up to this point we have set up our project, but we haven’t really implemented anything yet. It’s about time we start.
 
 Firstly, we create the entry point for our plugin, the createPlugin() top-level function that must be exported on our package API:
@@ -126,7 +126,7 @@ There is a lot happening here, so let’s unpack this. We have:
 
 The last 2 points show the magic sauce of the custom_lint package. We don’t need to identify if a token is a string literal or where it is. The plugin does it for us and the reporter will handle raising it.
 
-## Attempt #1
+### Attempt #1
 
 Those familiar with TDD will not be surprised by the first solution attempt I’ll present here. Remember, we need to satisfy only one test case we have right now to get back to **green**, so we’ll do the most basic and obvious implementation to get it passing again:
 
@@ -140,7 +140,7 @@ Yes, if you think returning true on every string literal will not be the solutio
 
 But this is progress! Despite raising some incorrect warnings, our rule is at least working for our test case, which is a start. Now we just need to make sure we don’t do it for every single string there is.
 
-## Attempt #2
+### Attempt #2
 
 Our first attempt doesn’t apply any logic to the nodes being analyzed, so it incorrectly raised problems with import paths. We need to actually check our AstNode (and all its ancestors) passed to the specification in order to exclude imports. Study the [analyzer](https://pub.dev/documentation/analyzer/latest/dart_ast_ast/dart_ast_ast-library.html) package API, or print details of what you are analyzing and use the **custom_lint.log** file to identify them yourself as a debugging exploratory solution.
 
@@ -151,7 +151,7 @@ So, after some experimentation, we get to a first working solution for our singl
 
 Although this may not be entirely clear at first, it makes our test pass, i.e., the string we expected to be marked is correctly done so, while our imports are not anymore.
 
-# Refactor
+## Refactor
 
 The third step of the TDD mantra is where we finally refine and implement the desired logic. In this step we start to abstract and define our *Specifications*, in such a way that our test continues to pass.
 
@@ -177,7 +177,7 @@ Simple: it checks for a single piece of the puzzle. In this case, if the AstNode
 
 And now we need to check if the string is declared inside a **Widget** or any of its members, such as constructors. Here is the catch: there is **no** Widget-specific AST!
 
-## Extending ASTs
+### Extending ASTs
 Yet, we can keep readability on our *Specifications* if we use extension methods on AstNode. For instance, look at our ConstructorSpecification:
 
 ![Simple definition of our (Widget) ConstructorSpecification](/images/blog/constructor-specification.png)  
@@ -192,7 +192,7 @@ Finally, after iterating and testing for a while, part of our extensions will lo
 
 There is a lot here and it clearly needs a good clean-up, but, nonetheless, it works as we want for this case. Eventually, we can refactor this into more *Specifications*, but at the moment we leave it as is, since we can leverage these extensions through recursion.
 
-# Testing for real
+## Testing for real
 
 Okay, so we applied the red-green-refactor mantra and got to where we wanted by using the analysis server as a “test framework”. But Dart already has a reliable test framework which we can (and should) be using.
 
@@ -216,7 +216,7 @@ dart test
 
 Now TDD can be properly applied and even be used on CI/CD workflows.
 
-# Conclusion
+## Conclusion
 
 To recap what we did, the steps to creating a custom lint rule are:
 
