@@ -3,6 +3,12 @@ import 'dart:io';
 import 'package:static_shock/static_shock.dart';
 
 Future<void> main(List<String> arguments) async {
+  final site = RssSiteConfiguration(
+    homePageUrl: 'https://el-darto.net/',
+    title: 'El Darto',
+    description: 'Ay caramba!',
+    language: 'en',
+  );
   // Configure the static website generator.
   final staticShock = StaticShock()
     // Here, you can directly hook into the StaticShock pipeline. For example,
@@ -27,12 +33,31 @@ Future<void> main(List<String> arguments) async {
     ))
     ..plugin(const RequiredMetadataPlugin())
     ..plugin(RssPlugin(
-        site: RssSiteConfiguration(
-      homePageUrl: '/',
-      title: 'El Darto',
-      description: 'Ay caramba!',
-      language: 'en',
-    )));
+      // blog feed
+      rssFeedPath: const FileRelativePath("", "blog_feed", "xml"),
+      pageToRssItemMapper: (config, page) {
+        if (page.destinationPath?.value.startsWith("blog") ?? false) {
+          return defaultPageToRssItemMapper(config, page);
+        }
+        return null;
+      },
+      site: site,
+    ))
+    ..plugin(RssPlugin(
+      // packages feed
+      rssFeedPath: const FileRelativePath("", "package_feed", "xml"),
+      pageToRssItemMapper: (config, page) {
+        if (page.destinationPath?.value.startsWith("packages") ?? false) {
+          return defaultPageToRssItemMapper(config, page);
+        }
+        return null;
+      },
+      site: site,
+    ))
+    ..plugin(RssPlugin(
+      // all posts feed
+      site: site,
+    ));
 
   // Generate the static website.
   await staticShock.generateSite();
