@@ -18,12 +18,12 @@ tags:
 
 Posted on [Medium](https://medium.com/@gbassisp/creating-a-custom-lint-package-for-better-code-quality-in-flutter-d95965b97249) on 12 June 2023
 
-<div style="text-align: center;">
+
 
 ![sample flutter code](/images/blog/flutter.png)  
 *Photo by [Artur Shamsutdinov](https://unsplash.com/es/@roketpik?utm_source=medium&utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&utm_medium=referral)*
 
-</div>
+
 
 # Problem
 
@@ -41,23 +41,23 @@ Take, for instance, the classic “date as a string” approach. We have all see
 
 This may seem unreal, but the example below is based on things I have seen in published apps:
 
-<div style="text-align: center;">
+
 
 ![flutter code smell example](/images/blog/flutter-code-smell.png)  
 *Yes, stuff like this exists out there*
 
-</div>
+
 
 You end up with scattered methods for parsing, validating, and formatting values all over the place, making maintenance a nightmare. And when internationali(z)sation becomes a requirement, well, things go from bad to worse.
 
 And it goes without saying that there are absolute no tests or comments written when you find something like this. Refactoring and cleaning this mess is always risky.
 
-<div style="text-align: center;">
+
 
 ![007](/images/blog/007.png)  
 *Source: [https://imgflip.com/](https://imgflip.com/)*
 
-</div>
+
 
 # Solution
 
@@ -76,12 +76,12 @@ Sure, this will not put an end to this issue, but at least it will force develop
 
 By installing and enabling this linter plugin, the example code I showed before is immediately targeted by the analyzer with a few warnings:
 
-<div style="text-align: center;">
+
 
 ![linter warning](/images/blog/linter-warning.png)  
 *Warnings for the win!*
 
-</div>
+
 
 Then, with all these problems showing up on the analyzer, chances are the project maintainer (or even your CI/CD workflows) will block any PR with this mess.
 

@@ -6,6 +6,7 @@ html[data-bs-theme="light"] {
 
   .navbar {
     background: $lightBackground;
+    opacity: 1;
     border-bottom: 1px solid $dividerColor;
 
     .navbar-brand {
