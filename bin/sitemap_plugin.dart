@@ -5,6 +5,8 @@ import 'package:static_shock/static_shock.dart';
 
 class SitemapPlugin implements StaticShockPlugin {
   const SitemapPlugin({required this.baseUrl});
+  // TODO(gbassisp): remove this when static_shock adds a way to get the base
+  // url because this api is broken: https://staticshock.io/guides/base-url/
   final String baseUrl;
   @override
   String get id => 'simple-sitemap';
@@ -15,8 +17,10 @@ class SitemapPlugin implements StaticShockPlugin {
     StaticShockPipelineContext context,
     StaticShockCache cache,
   ) {
+    final base = baseUrl.endsWith('/') ? baseUrl : '$baseUrl/';
+
     pipeline.transformPages(
-      _SimpleSiteMapTransformer(baseUrl: baseUrl),
+      _SimpleSiteMapTransformer(baseUrl: base),
     );
   }
 }
