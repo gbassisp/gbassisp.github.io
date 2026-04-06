@@ -17,6 +17,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "12.0.0"
+  any_date:
+    dependency: transitive
+    description:
+      name: any_date
+      sha256: "0376b5e328832ab146e352de393f7fed6c41e1ba3c8020bef13610a66b50b36b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.2"
   archive:
     dependency: transitive
     description:
@@ -145,6 +153,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.3"
+  english_numerals:
+    dependency: transitive
+    description:
+      name: english_numerals
+      sha256: "2bf78e1f210685c4ad42e7ea48734be7f8af19887fad03306f1cfdba608904ce"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
   fbh_front_matter:
     dependency: transitive
     description:
@@ -289,6 +305,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.11.0"
+  lean_extensions:
+    dependency: "direct main"
+    description:
+      name: lean_extensions
+      sha256: dfc373a69e602cd64edc4d057e546ec4c429907778c3f34aa5bae5e86493d95f
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.9.1"
   lints:
     dependency: "direct dev"
     description:
