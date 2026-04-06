@@ -2,9 +2,12 @@ import 'dart:io';
 
 import 'package:static_shock/static_shock.dart';
 
+import 'sitemap_plugin.dart';
+
 Future<void> main(List<String> arguments) async {
+  const baseUrl = 'https://el-darto.net/';
   const site = RssSiteConfiguration(
-    homePageUrl: 'https://el-darto.net/',
+    homePageUrl: baseUrl,
     title: 'El Darto',
     description: 'Ay caramba!',
     language: 'en',
@@ -35,6 +38,7 @@ Future<void> main(List<String> arguments) async {
       ),
     )
     ..plugin(const RequiredMetadataPlugin())
+    ..plugin(const SitemapPlugin(baseUrl: baseUrl))
     ..plugin(
       RssPlugin(
         // blog feed
