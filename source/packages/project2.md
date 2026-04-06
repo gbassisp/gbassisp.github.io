@@ -1,6 +1,7 @@
 ---
 title: flutter_sane_lints
 publishDate: 2025-08-12
+description: Improve your Flutter code quality with flutter_sane_lints, a custom linting package that flags hardcoded strings and other anti-patterns.
 navOrder: 2
 ---
 

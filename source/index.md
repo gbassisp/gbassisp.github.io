@@ -1,6 +1,7 @@
 ---
 title: El Darto
 publishDate: 2025-09-18
+description: Explore El Darto, a showcase of Dart programming language applications beyond the Flutter framework, featuring custom lints, extensions, and more.
 rss: false
 ---
 

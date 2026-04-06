@@ -1,6 +1,7 @@
 ---
 title: any_date
 publishDate: 2025-08-12
+description: A powerful Dart package for flexible DateTime parsing and manipulation, supporting multiple locales and ISO 8601 compliance.
 navOrder: 1
 ---
 
