@@ -6,7 +6,7 @@ navOrder: 2
 ---
 
 
-# flutter_sane_lints
+## Introduction
 
 `flutter_sane_lints` is a custom linting package for Dart and Flutter that helps developers write cleaner and more maintainable UI code. Its primary goal is to enforce best practices by flagging common issues directly in the IDE.
 
