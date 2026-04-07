@@ -1,10 +1,11 @@
 ---
 title: any_date
 publishDate: 2025-08-12
+description: A powerful Dart package for flexible DateTime parsing and manipulation, supporting multiple locales and ISO 8601 compliance.
 navOrder: 1
 ---
 
-# any_date
+## Overview
 
 [![PubStats Popularity](https://pubstats.dev/badges/packages/any_date/popularity.svg)](https://pubstats.dev/packages/any_date)
 

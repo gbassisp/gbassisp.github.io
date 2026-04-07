@@ -1,10 +1,11 @@
 ---
 title: english_numerals
 publishDate: 2025-09-18
+description: Easily convert numbers into English numerals and back with this simple, null-safe Dart package.
 navOrder: 4
 ---
 
-# english_numerals
+## Overview
 
 [![PubStats Popularity](https://pubstats.dev/badges/packages/english_numerals/popularity.svg)](https://pubstats.dev/packages/english_numerals)
 

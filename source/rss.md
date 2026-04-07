@@ -1,6 +1,7 @@
 ---
 title: RSS Feeds
 publishDate: 2026-04-03
+description: Stay updated with the latest blog posts and package releases from El Darto via our RSS feeds.
 rss: false
 ---
 

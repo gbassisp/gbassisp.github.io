@@ -1,11 +1,12 @@
 ---
 title: flutter_sane_lints
 publishDate: 2025-08-12
+description: Improve your Flutter code quality with flutter_sane_lints, a custom linting package that flags hardcoded strings and other anti-patterns.
 navOrder: 2
 ---
 
 
-# flutter_sane_lints
+## Introduction
 
 `flutter_sane_lints` is a custom linting package for Dart and Flutter that helps developers write cleaner and more maintainable UI code. Its primary goal is to enforce best practices by flagging common issues directly in the IDE.
 
