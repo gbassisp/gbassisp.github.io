@@ -29,6 +29,12 @@ class _SimpleSiteMapTransformer implements PageTransformer {
   _SimpleSiteMapTransformer({required this.baseUrl});
   final List<String> links = [];
   final String baseUrl;
+  String get robotsContent => '''
+User-agent: *
+Allow: /
+
+Sitemap: ${baseUrl}sitemap.txt
+''';
 
   @override
   FutureOr<void> transformPage(StaticShockPipelineContext context, Page page) {
@@ -41,6 +47,7 @@ class _SimpleSiteMapTransformer implements PageTransformer {
     }
 
     _createSiteMap(context, page);
+    _createRobotsTxt(context, page);
   }
 
   void _createSiteMap(StaticShockPipelineContext context, Page page) {
@@ -48,6 +55,18 @@ class _SimpleSiteMapTransformer implements PageTransformer {
 
     final content =
         AssetContent.text(links.map((link) => '$baseUrl$link').join('\n'));
+    context.addAsset(
+      Asset(
+        destinationPath: destinationPath,
+        destinationContent: content,
+      ),
+    );
+  }
+
+  void _createRobotsTxt(StaticShockPipelineContext context, Page page) {
+    const destinationPath = FileRelativePath('', 'robots', 'txt');
+
+    final content = AssetContent.text(robotsContent);
     context.addAsset(
       Asset(
         destinationPath: destinationPath,
