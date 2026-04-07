@@ -27,7 +27,7 @@ class SitemapPlugin implements StaticShockPlugin {
 
 class _SimpleSiteMapTransformer implements PageTransformer {
   _SimpleSiteMapTransformer({required this.baseUrl});
-  final List<String> links = [];
+  final Set<String> links = {};
   final String baseUrl;
   String get robotsContent => '''
 User-agent: *
@@ -41,9 +41,7 @@ Sitemap: ${baseUrl}sitemap.txt
     final isHtml = page.destinationPath?.value.endsWith('.html') ?? false;
     final Object? isIncluded = page.data['sitemap'] ?? true;
     if (isHtml && isIncluded.isTruthy) {
-      links
-        ..add(page.destinationPath!.value)
-        ..sort();
+      links.add(baseUrl + page.destinationPath!.value);
     }
 
     _createSiteMap(context, page);
@@ -52,9 +50,15 @@ Sitemap: ${baseUrl}sitemap.txt
 
   void _createSiteMap(StaticShockPipelineContext context, Page page) {
     const destinationPath = FileRelativePath('', 'sitemap', 'txt');
+    final canonicalLinks = links.map((e) {
+      if (e.endsWith('index.html')) {
+        return e.replaceLast('index.html', '');
+      }
+      return e;
+    }).toArray()
+      ..sort();
 
-    final content =
-        AssetContent.text(links.map((link) => '$baseUrl$link').join('\n'));
+    final content = AssetContent.text(canonicalLinks.join('\n'));
     context.addAsset(
       Asset(
         destinationPath: destinationPath,
