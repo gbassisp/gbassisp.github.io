@@ -37,6 +37,9 @@ navigation:
     - title: RSS Feeds
       url: /rss/
 
+    - title: Contact
+      url: /contact/
+
     - title: Packages
       tag: packages
       sortBy: navOrder
