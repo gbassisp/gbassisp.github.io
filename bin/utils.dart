@@ -1,13 +1,15 @@
 String urlWithTrailingSlash(String url) {
-  if (url.endsWith('/')) {
-    return url;
+  final u = url.trim();
+  if (u.endsWith('/')) {
+    return urlWithTrailingSlash(u.substring(0, u.length - 1));
   }
-  return '$url/';
+  return '$u/';
 }
 
 String urlWithoutLeadingSlash(String url) {
-  if (url.startsWith('/')) {
-    return urlWithoutLeadingSlash(url.substring(1));
+  final u = url.trim();
+  if (u.startsWith('/')) {
+    return urlWithoutLeadingSlash(u.substring(1));
   }
-  return url;
+  return u;
 }
