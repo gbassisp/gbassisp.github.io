@@ -41,7 +41,6 @@ Future<void> main(List<String> arguments) async {
       ),
     )
     ..plugin(const RequiredMetadataPlugin())
-    ..plugin(const SitemapPlugin(baseUrl: baseUrl))
     ..plugin(
       RssPlugin(
         // blog feed
@@ -73,7 +72,9 @@ Future<void> main(List<String> arguments) async {
         // all posts feed
         site: site,
       ),
-    );
+    )
+    // must be the last one to finish with the sitemap
+    ..plugin(const SitemapPlugin(baseUrl: baseUrl));
 
   // Generate the static website.
   await staticShock.generateSite();
