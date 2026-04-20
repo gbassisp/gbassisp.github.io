@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:static_shock/static_shock.dart';
 
+import 'correct_redirect_plugin.dart';
 import 'required_metadata_plugin.dart';
 import 'sitemap_plugin.dart';
 
@@ -24,7 +25,7 @@ Future<void> main(List<String> arguments) async {
     ..plugin(const MarkdownPlugin())
     ..plugin(const JinjaPlugin())
     ..plugin(const PrettyUrlsPlugin())
-    ..plugin(const RedirectsPlugin())
+    ..plugin(const CorrectRedirectsPlugin(baseUrl: baseUrl))
     ..plugin(const SassPlugin())
     ..plugin(
       GitHubContributorsPlugin(
