@@ -3,6 +3,8 @@ title: english_numerals
 publishDate: 2025-09-18
 description: Easily convert numbers into English numerals and back with this simple, null-safe Dart package.
 navOrder: 4
+redirectFrom: 
+  - /packages/project4/
 ---
 
 ## Overview

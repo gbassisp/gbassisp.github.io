@@ -35,7 +35,7 @@ Also, let’s not forget the infamous practice of using strings in conditionals 
 
 Another common problem I see often is the infamous [primitive obsession](https://en.wikipedia.org/wiki/Design_smell), where developers with a different background are not familiar with Object Oriented Programming start writing complex logic using strings to represent something else.
 
-Take, for instance, the classic “date as a string” approach. We have all seen this before: someone wanted to manipulate a date value, but instead of using a DateTime object and its methods, decided to go rogue and store that date as a string. It’s downhill after that. Want to know the month? Split the string into an iterable and get the second element!
+Take, for instance, the classic “date as a string” approach. We have all seen this before: someone wanted to manipulate a date value, but instead of using a [DateTime object and its methods](/packages/any_date/), decided to go rogue and store that date as a string. It’s downhill after that. Want to know the month? Split the string into an iterable and get the second element!
 
 *Your heart skips a beat and a tear forms on the corner of your eye.*
 

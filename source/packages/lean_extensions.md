@@ -3,6 +3,8 @@ title: lean_extensions
 publishDate: 2025-08-12
 description: A collection of powerful Dart extension methods and helper classes inspired by Python and C# to boost development speed.
 navOrder: 3
+redirectFrom: 
+  - /packages/project3/
 ---
 
 

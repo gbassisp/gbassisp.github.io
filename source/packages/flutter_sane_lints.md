@@ -3,6 +3,8 @@ title: flutter_sane_lints
 publishDate: 2025-08-12
 description: Improve your Flutter code quality with flutter_sane_lints, a custom linting package that flags hardcoded strings and other anti-patterns.
 navOrder: 2
+redirectFrom: 
+  - /packages/project2/
 ---
 
 
@@ -117,9 +119,9 @@ More rules will be added in the future, but in the meantime, I am open to reques
 [primitive_obsession_wikipedia_link]: https://en.wikipedia.org/wiki/Design_smell#Common_design_smells
 ## Learn More
 
-I wrote a detailed article on Medium that walks through the process of creating this custom lint rule from scratch. You can read it here:
+I wrote a detailed article on Medium that walks through the process of creating this custom lint rule from scratch. You can read it here on [Medium](https://medium.com/@gil.bassi/how-to-create-a-custom-lint-rule-for-flutter-49ce16210c28) or directly on this [blog](/blog/2023-09-29-how-to-create-a-custom-lint/):
 
-[How to create a custom lint rule for Flutter](https://medium.com/@gil.bassi/how-to-create-a-custom-lint-rule-for-flutter-49ce16210c28)
+[How to create a custom lint rule for Flutter](/blog/2023-09-29-how-to-create-a-custom-lint/)
 
 ## pub.dev
 
