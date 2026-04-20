@@ -1,7 +1,7 @@
-import 'dart:async';
-
 import 'package:lean_extensions/lean_extensions.dart';
 import 'package:static_shock/static_shock.dart';
+
+import 'utils.dart';
 
 class SitemapPlugin implements StaticShockPlugin {
   const SitemapPlugin({required this.baseUrl});
@@ -17,16 +17,16 @@ class SitemapPlugin implements StaticShockPlugin {
     StaticShockPipelineContext context,
     StaticShockCache cache,
   ) {
-    final base = baseUrl.endsWith('/') ? baseUrl : '$baseUrl/';
+    final base = urlWithTrailingSlash(baseUrl);
 
-    pipeline.transformPages(
-      _SimpleSiteMapTransformer(baseUrl: base),
+    pipeline.finish(
+      _SimpleSiteMapFinisher(baseUrl: base),
     );
   }
 }
 
-class _SimpleSiteMapTransformer implements PageTransformer {
-  _SimpleSiteMapTransformer({required this.baseUrl});
+class _SimpleSiteMapFinisher implements Finisher {
+  _SimpleSiteMapFinisher({required this.baseUrl});
   final Set<String> links = {};
   final String baseUrl;
   String get robotsContent => '''
@@ -37,18 +37,22 @@ Sitemap: ${baseUrl}sitemap.txt
 ''';
 
   @override
-  FutureOr<void> transformPage(StaticShockPipelineContext context, Page page) {
-    final isHtml = page.destinationPath?.value.endsWith('.html') ?? false;
-    final Object? isIncluded = page.data['sitemap'] ?? true;
-    if (isHtml && isIncluded.isTruthy) {
-      links.add(baseUrl + page.destinationPath!.value);
+  void execute(StaticShockPipelineContext context) {
+    final pages = context.pagesIndex.pages.toArray();
+
+    for (final page in pages) {
+      final isHtml = page.destinationPath?.value.endsWith('.html') ?? false;
+      final Object? isIncluded = page.data['sitemap'] ?? true;
+      if (isHtml && isIncluded.isTruthy) {
+        links.add(baseUrl + page.destinationPath!.value);
+      }
     }
 
-    _createSiteMap(context, page);
-    _createRobotsTxt(context, page);
+    _createSiteMap(context);
+    _createRobotsTxt(context);
   }
 
-  void _createSiteMap(StaticShockPipelineContext context, Page page) {
+  void _createSiteMap(StaticShockPipelineContext context) {
     const destinationPath = FileRelativePath('', 'sitemap', 'txt');
     final canonicalLinks = links.map((e) {
       if (e.endsWith('index.html')) {
@@ -67,7 +71,7 @@ Sitemap: ${baseUrl}sitemap.txt
     );
   }
 
-  void _createRobotsTxt(StaticShockPipelineContext context, Page page) {
+  void _createRobotsTxt(StaticShockPipelineContext context) {
     const destinationPath = FileRelativePath('', 'robots', 'txt');
 
     final content = AssetContent.text(robotsContent);
