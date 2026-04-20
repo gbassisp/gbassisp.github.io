@@ -32,7 +32,7 @@ for (final i in range(10)) {
 }
 
 // some converters for easy (de)serialization
-const converter = [AnyDateConverter()](/packages/any_date/);
+const converter = AnyDateConverter();
 final date1 = converter.fromJson('25 Nov 2023');
 if (date1 == DateTime(2023, 11, 25)) {
   // easily deserializes common types
@@ -42,7 +42,7 @@ if (date1 == DateTime(2023, 11, 25)) {
 final anInt = '1'.toInt(); // resolves to 1
 
 // and a touch of magic
-final anotherInt = ['one'.toInt()](/packages/english_numerals/); // resolves to 1 as well
+final anotherInt = 'one'.toInt(); // resolves to 1 as well
 
 ```
 
