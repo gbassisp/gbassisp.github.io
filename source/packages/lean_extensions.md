@@ -3,6 +3,8 @@ title: lean_extensions
 publishDate: 2025-08-12
 description: A collection of powerful Dart extension methods and helper classes inspired by Python and C# to boost development speed.
 navOrder: 3
+redirectFrom: 
+  - /packages/project3/
 ---
 
 
@@ -30,7 +32,7 @@ for (final i in range(10)) {
 }
 
 // some converters for easy (de)serialization
-const converter = AnyDateConverter();
+const converter = [AnyDateConverter()](/packages/any_date/);
 final date1 = converter.fromJson('25 Nov 2023');
 if (date1 == DateTime(2023, 11, 25)) {
   // easily deserializes common types
@@ -40,7 +42,7 @@ if (date1 == DateTime(2023, 11, 25)) {
 final anInt = '1'.toInt(); // resolves to 1
 
 // and a touch of magic
-final anotherInt = 'one'.toInt(); // resolves to 1 as well
+final anotherInt = ['one'.toInt()](/packages/english_numerals/); // resolves to 1 as well
 
 ```
 
