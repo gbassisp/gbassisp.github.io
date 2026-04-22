@@ -1,0 +1,5 @@
+Contact: mailto:gbassisp@proton.me
+Encryption: https://el-darto.net/assets/264EB2CBF7506ACE.asc
+Expires: 2126-04-22T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://el-darto.net/.well-known/security.txt

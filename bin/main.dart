@@ -17,7 +17,7 @@ Future<void> main(List<String> arguments) async {
   // Configure the static website generator.
   final staticShock = StaticShock()
     // Here, you can directly hook into the StaticShock pipeline. For example,
-    // you can copy an "images" directory from the source set to build set:
+    ..pick(DirectoryPicker.parse('.well-known'))
     ..pick(DirectoryPicker.parse('assets'))
     ..pick(DirectoryPicker.parse('images'))
     // All 3rd party behavior is added through plugins, even the behavior
