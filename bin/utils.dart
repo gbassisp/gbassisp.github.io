@@ -1,3 +1,5 @@
+import 'package:static_shock/static_shock.dart';
+
 String urlWithTrailingSlash(String url) {
   final u = url.trim();
   if (u.endsWith('/')) {
@@ -12,4 +14,15 @@ String urlWithoutLeadingSlash(String url) {
     return urlWithoutLeadingSlash(u.substring(1));
   }
   return u;
+}
+
+extension SimplePickersAndPlugins on StaticShock {
+  StaticShock pickDefault() {
+    return this
+      ..pick(DirectoryPicker.parse('.well-known'))
+      ..pick(DirectoryPicker.parse('assets'))
+      ..pick(DirectoryPicker.parse('images'))
+      ..pick(const FilePicker(FileRelativePath('', 'robots', 'txt')))
+      ..pick(const FilePicker(FileRelativePath('', 'humans', 'txt')));
+  }
 }
