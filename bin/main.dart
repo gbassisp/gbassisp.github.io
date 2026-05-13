@@ -7,9 +7,14 @@ import 'required_metadata_plugin.dart';
 import 'sitemap_plugin.dart';
 import 'utils.dart';
 
+const remoteUrl = 'https://el-darto.net/';
+const localUrl = 'http://localhost:4000/';
+
 Future<void> main(List<String> arguments) async {
-  const baseUrl = 'https://el-darto.net/';
-  const site = RssSiteConfiguration(
+  final baseUrl =
+      urlWithTrailingSlash(arguments.contains('local') ? localUrl : remoteUrl);
+
+  final site = RssSiteConfiguration(
     homePageUrl: baseUrl,
     title: 'El Darto',
     description: 'Ay caramba!',
@@ -23,7 +28,7 @@ Future<void> main(List<String> arguments) async {
     ..plugin(const MarkdownPlugin())
     ..plugin(const JinjaPlugin())
     ..plugin(const PrettyUrlsPlugin())
-    ..plugin(const CorrectRedirectsPlugin(baseUrl: baseUrl))
+    ..plugin(CorrectRedirectsPlugin(baseUrl: baseUrl))
     ..plugin(const SassPlugin())
     ..plugin(
       GitHubContributorsPlugin(
@@ -66,13 +71,13 @@ Future<void> main(List<String> arguments) async {
       ),
     )
     ..plugin(
-      const RssPlugin(
+      RssPlugin(
         // all posts feed
         site: site,
       ),
     )
     // must be the last one to finish with the sitemap
-    ..plugin(const SitemapPlugin(baseUrl: baseUrl));
+    ..plugin(SitemapPlugin(baseUrl: baseUrl));
 
   // Generate the static website.
   await staticShock.generateSite();
