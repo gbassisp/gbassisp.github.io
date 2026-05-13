@@ -1,3 +1,4 @@
+import 'package:html/parser.dart' as html_parser;
 import 'package:lean_extensions/lean_extensions.dart';
 import 'package:static_shock/static_shock.dart';
 
@@ -44,7 +45,23 @@ Sitemap: ${baseUrl}sitemap.txt
       final isHtml = page.destinationPath?.value.endsWith('.html') ?? false;
       final Object? isIncluded = page.data['sitemap'] ?? true;
       if (isHtml && isIncluded.isTruthy) {
-        links.add(baseUrl + page.destinationPath!.value);
+        final url = urlWithTrailingSlash(
+          '$baseUrl${page.destinationPath!.value}'
+              .replaceLast(RegExp(r'index.html$'), ''),
+        );
+        var isCanonical = true;
+        final canonicalUri = _canonicalUri(page);
+
+        if (canonicalUri != null) {
+          final withBase = baseUrl + urlWithoutLeadingSlash(canonicalUri);
+          if (withBase != url) {
+            isCanonical = false;
+          }
+        }
+
+        if (isCanonical) {
+          links.add(url);
+        }
       }
     }
 
@@ -82,4 +99,18 @@ Sitemap: ${baseUrl}sitemap.txt
       ),
     );
   }
+}
+
+String? _canonicalUri(Page page) {
+  final content = page.destinationContent.orEmpty;
+  final document = html_parser.parse(content);
+  final element = document.querySelector('link[rel="canonical"]');
+  final link = element?.attributes['href'];
+
+  if (link == null) {
+    return null;
+  }
+
+  final uri = Uri.parse(link);
+  return urlWithTrailingSlash(uri.path.replaceLast(RegExp(r'index.html$'), ''));
 }
