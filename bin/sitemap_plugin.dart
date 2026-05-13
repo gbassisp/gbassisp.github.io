@@ -45,19 +45,14 @@ Sitemap: ${baseUrl}sitemap.txt
       final isHtml = page.destinationPath?.value.endsWith('.html') ?? false;
       final Object? isIncluded = page.data['sitemap'] ?? true;
       if (isHtml && isIncluded.isTruthy) {
-        final url = urlWithTrailingSlash(
-          '$baseUrl${page.destinationPath!.value}'
-              .replaceLast(RegExp(r'index.html$'), ''),
+        final url = baseUrlResolvePath(
+          baseUrl,
+          page.destinationPath!.value,
+          dropIndexHtml: true,
         );
-        var isCanonical = true;
-        final canonicalUri = _canonicalUri(page);
+        final canonicalUri = _canonicalUri(baseUrl, page);
 
-        if (canonicalUri != null) {
-          final withBase = baseUrl + urlWithoutLeadingSlash(canonicalUri);
-          if (withBase != url) {
-            isCanonical = false;
-          }
-        }
+        final isCanonical = canonicalUri == null || canonicalUri == url;
 
         if (isCanonical) {
           links.add(url);
@@ -73,7 +68,9 @@ Sitemap: ${baseUrl}sitemap.txt
     const destinationPath = FileRelativePath('', 'sitemap', 'txt');
     final canonicalLinks = links.map((e) {
       if (e.endsWith('index.html')) {
-        return e.replaceLast('index.html', '');
+        throw FormatException(
+          'Links on sitemap should not end with index.html: $e',
+        );
       }
       return e;
     }).toArray()
@@ -101,7 +98,7 @@ Sitemap: ${baseUrl}sitemap.txt
   }
 }
 
-String? _canonicalUri(Page page) {
+String? _canonicalUri(String baseUrl, Page page) {
   final content = page.destinationContent.orEmpty;
   final document = html_parser.parse(content);
   final element = document.querySelector('link[rel="canonical"]');
@@ -112,5 +109,5 @@ String? _canonicalUri(Page page) {
   }
 
   final uri = Uri.parse(link);
-  return urlWithTrailingSlash(uri.path.replaceLast(RegExp(r'index.html$'), ''));
+  return baseUrlResolvePath(baseUrl, uri.path, dropIndexHtml: true);
 }
