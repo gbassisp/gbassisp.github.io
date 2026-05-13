@@ -1,3 +1,4 @@
+import 'package:html/parser.dart' as html_parser;
 import 'package:lean_extensions/lean_extensions.dart';
 import 'package:static_shock/static_shock.dart';
 
@@ -44,7 +45,18 @@ Sitemap: ${baseUrl}sitemap.txt
       final isHtml = page.destinationPath?.value.endsWith('.html') ?? false;
       final Object? isIncluded = page.data['sitemap'] ?? true;
       if (isHtml && isIncluded.isTruthy) {
-        links.add(baseUrl + page.destinationPath!.value);
+        final url = baseUrlResolvePath(
+          baseUrl,
+          page.destinationPath!.value,
+          dropIndexHtml: true,
+        );
+        final canonicalUri = _canonicalUri(baseUrl, page);
+
+        final isCanonical = canonicalUri == null || canonicalUri == url;
+
+        if (isCanonical) {
+          links.add(url);
+        }
       }
     }
 
@@ -56,7 +68,9 @@ Sitemap: ${baseUrl}sitemap.txt
     const destinationPath = FileRelativePath('', 'sitemap', 'txt');
     final canonicalLinks = links.map((e) {
       if (e.endsWith('index.html')) {
-        return e.replaceLast('index.html', '');
+        throw FormatException(
+          'Links on sitemap should not end with index.html: $e',
+        );
       }
       return e;
     }).toArray()
@@ -82,4 +96,18 @@ Sitemap: ${baseUrl}sitemap.txt
       ),
     );
   }
+}
+
+String? _canonicalUri(String baseUrl, Page page) {
+  final content = page.destinationContent.orEmpty;
+  final document = html_parser.parse(content);
+  final element = document.querySelector('link[rel="canonical"]');
+  final link = element?.attributes['href'];
+
+  if (link == null) {
+    return null;
+  }
+
+  final uri = Uri.parse(link);
+  return baseUrlResolvePath(baseUrl, uri.path, dropIndexHtml: true);
 }

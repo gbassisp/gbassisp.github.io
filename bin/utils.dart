@@ -1,4 +1,22 @@
+import 'package:lean_extensions/lean_extensions.dart';
 import 'package:static_shock/static_shock.dart';
+
+String baseUrlResolvePath(
+  String baseUrl,
+  String path, {
+  bool dropIndexHtml = false,
+}) {
+  final base = urlWithTrailingSlash(baseUrl);
+  var p = urlWithoutLeadingSlash(path);
+  if (dropIndexHtml) {
+    p = p.replaceLast(RegExp(r'index.html$'), '');
+  }
+
+  assert(Uri.parse(base).isAbsolute, 'base must be an absolute URI: $base');
+  assert(!Uri.parse(p).isAbsolute, 'path must be a relative URI: $path');
+
+  return '$base$p';
+}
 
 String urlWithTrailingSlash(String url) {
   final u = url.trim();
